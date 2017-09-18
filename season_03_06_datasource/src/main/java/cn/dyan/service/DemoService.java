@@ -1,5 +1,7 @@
 package cn.dyan.service;
 
+import cn.dyan.dao.OrgDao;
+import cn.dyan.dao.UserDao;
 import cn.dyan.datasource.JdbcTemplate;
 import cn.dyan.tx.MyTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +21,14 @@ public class DemoService {
     private DataSource dataSource;
 
     @Autowired
-    private JdbcTemplate jdbcTemplate;
-
+    private OrgDao orgDao;
     @Autowired
-    private OrgService orgService;
+    private UserDao userDao;
 
     @MyTransactional
-    public void sayHello(String uname) throws Exception {
-        String sql = "INSERT INTO tb_user(uuid,uname) VALUES('"+ UUID.randomUUID()+"','"+uname+"')";
-        jdbcTemplate.execute(sql);
-        orgService.insertOrg(UUID.randomUUID().toString());
-        //orgService.insertOrg(uname+"_org");
+    public void insertInfo(String uname,String orgName) throws Exception {
+        orgDao.createOrg(orgName);
+        userDao.createUser(uname);
     }
 
 }
