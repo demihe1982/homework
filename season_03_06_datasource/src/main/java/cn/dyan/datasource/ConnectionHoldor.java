@@ -11,7 +11,7 @@ public class ConnectionHoldor {
     private boolean isWithTransaction;
     private boolean isTransactionActive = false;
 
-    //记录引用连接测次数
+    //记录引用连接的次数
     private int referenceCount=0;
 
     public ConnectionHoldor(Connection connection,boolean isNewTransaction){

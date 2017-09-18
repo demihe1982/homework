@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public abstract class MyTransactionManager {
 
-    //存储DataSource: ConnectionHoldor
+    //存储DataSource: ConnectionHoldor ,多数据源的问题
     private static ThreadLocal<Map<Object,Object>> resources = new ThreadLocal<Map<Object, Object>>();
 
     /**
@@ -34,6 +34,13 @@ public abstract class MyTransactionManager {
             resources.set(map);
         }
         resources.get().put(key,value);
+    }
+
+    public static void unbindResource(Object value){
+        Map<Object,Object> map = resources.get();
+        if(map !=null){
+            map.remove(value);
+        }
     }
 
 }

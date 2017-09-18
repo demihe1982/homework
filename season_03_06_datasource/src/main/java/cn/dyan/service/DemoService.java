@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.util.UUID;
 
 /**
  * Created by demi on 2017/9/5.
@@ -22,7 +23,7 @@ public class DemoService {
 
     @MyTransactional
     public void sayHello(String uname) throws Exception {
-        String sql = "INSERT INTO tb_user(uname) VALUES('"+uname+"')";
+        String sql = "INSERT INTO tb_user(uuid,uname) VALUES('"+ UUID.randomUUID()+"','"+uname+"')";
         jdbcTemplate.execute(sql);
     }
 

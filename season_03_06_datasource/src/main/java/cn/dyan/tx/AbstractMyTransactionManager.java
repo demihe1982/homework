@@ -7,8 +7,11 @@ public abstract class AbstractMyTransactionManager implements PlatformMyTransact
     @Override
     public MyTransactionStatus getTransaction(MyTransactionAttribute transactionAttribute) {
         Object transaction = doGetTransaction();
+        this.doBegin(transaction,transactionAttribute);
         return new DefaultTransactionStatus(transaction);
     }
 
     protected abstract Object doGetTransaction();
+
+   protected abstract void doBegin(Object transaction,MyTransactionAttribute attribute);
 }

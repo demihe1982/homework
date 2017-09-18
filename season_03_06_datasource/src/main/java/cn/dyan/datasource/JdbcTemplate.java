@@ -22,6 +22,7 @@ public class JdbcTemplate {
         Statement stmt = null;
         try {
             con = DataSourceUtils.getConnection(getDataSource());
+            System.out.println("autoCommit is : "+con.getAutoCommit());
             stmt = con.createStatement();
             return stmt.execute(sql);
         }catch (Exception e){
