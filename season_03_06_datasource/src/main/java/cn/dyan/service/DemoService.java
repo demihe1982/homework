@@ -21,10 +21,15 @@ public class DemoService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private OrgService orgService;
+
     @MyTransactional
     public void sayHello(String uname) throws Exception {
         String sql = "INSERT INTO tb_user(uuid,uname) VALUES('"+ UUID.randomUUID()+"','"+uname+"')";
         jdbcTemplate.execute(sql);
+        orgService.insertOrg(UUID.randomUUID().toString());
+        //orgService.insertOrg(uname+"_org");
     }
 
 }

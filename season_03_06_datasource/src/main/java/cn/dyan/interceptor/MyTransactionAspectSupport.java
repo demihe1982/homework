@@ -27,6 +27,7 @@ public class MyTransactionAspectSupport{
             retVal = invocationCallback.proceedWithInvocation();
             commitTransactionAfterReturning(txInfo);
         }catch (Throwable ex){
+            ex.printStackTrace();
             completeTransactionAfterThrowing(txInfo,ex);
         }finally {
             cleanupTransactionInfo(txInfo);

@@ -85,7 +85,7 @@ public class DataSourceMyTransactionManager extends AbstractMyTransactionManager
         return txObject;
     }
 
-    private class DataSourceTransactionObject{
+    public class DataSourceTransactionObject{
         private boolean newConnectionHolder;
         private ConnectionHoldor connectionHolder;
         private boolean mustRestoreAutoCommit =false;
